@@ -116,7 +116,13 @@ section:first-of-type{border-top:none;}
 }
 .section-title{font-family:var(--font-display); font-size:clamp(28px, 3.4vw, 40px); font-weight:500;}
 .section-note{
-  font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); max-width:32ch; text-align:right;
+  margin-top:10px;
+  max-width:65ch;
+
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.7;
+  color:var(--ink-soft);
 }
 @media (max-width:680px){ .section-note{text-align:left;} }
 
