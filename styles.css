@@ -129,6 +129,7 @@ section:first-of-type{border-top:none;}
   background:var(--line); border:1px solid var(--line);
 }
 @media (max-width:800px){ .teaser-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:520px){ .teaser-grid{grid-template-columns:1fr;} }
 .teaser-card{
   background:var(--paper); padding:36px 28px; display:flex; flex-direction:column;
   min-height:240px; text-decoration:none; color:var(--ink); transition:background .2s ease;
