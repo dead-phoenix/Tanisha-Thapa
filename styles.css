@@ -186,14 +186,18 @@ transition:
 }
 .note-card:hover {background: var(--card); transform: translateY(-3px);}
 .note-card:focus-visible {outline: 2px solid var(--signal); outline-offset: -2px;}
-.note-num{font-family:var(--font-mono); font-size:12px; color:var(--signal-soft); margin-bottom:14px;}
+.note-num{font-family:var(--font-mono); font-size:12px; color:var(--signal-soft); margin-bottom:14px; flex-grow:0;}
 .note-topic{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em;
   text-transform:uppercase; color:var(--signal-soft); margin-bottom:14px;
+  line-height:1.4; min-height:2.8em; flex-grow:0;
 }
-.note-title{font-family:var(--font-display); font-size:20px; font-weight:500; margin-bottom:12px;}
-.note-card p{color:var(--ink-soft); font-size:14.5px; flex-grow:1;}
+.note-title{font-family:var(--font-display); font-size:20px; font-weight:500; margin-bottom:12px; flex-grow:0;}
+.note-card p{color:var(--ink-soft); font-size:14.5px;}
+.note-card > p:not(.note-topic):not(.note-status){flex-grow:1;}
 .note-status{
-  font-family:var(--font-mono); font-size:12px; color:var(--signal); margin-top:auto; letter-spacing:.04em; opacity:1;}
+  font-family:var(--font-mono); font-size:12px; color:var(--signal); margin-top:auto; letter-spacing:.04em; opacity:1; flex-grow:0;}
+.note-card.note-disabled{opacity:0.55; cursor:default;}
+.note-card.note-disabled:hover{background:var(--paper); transform:none;}
 
 /* ---------- ARTICLE PAGES ---------- */
 
