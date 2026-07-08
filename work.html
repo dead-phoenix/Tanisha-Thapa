@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Tanisha Thapa</title>
+<meta name="description" content="Work experience of Tanisha Thapa across Kheops, Volta Medical, MANE Fragrances, and VPatrol.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">TANISHA THAPA</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-header">
+    <div class="wrap">
+      <p class="section-tag reveal">Experience</p>
+      <h1 class="reveal">Four internships, four problems worth solving</h1>
+      <p class="reveal">Gurugram → Nice → Melbourne. Each role took something manual, slow, or opaque and made it fast, clear, or both.</p>
+    </div>
+  </div>
+
+  <section style="border-top:none;">
+    <div class="wrap">
+
+      <div class="role reveal">
+        <div class="role-dates">Mar 2024 — Aug 2024</div>
+        <div>
+          <div class="role-title">AI Intern</div>
+          <div class="role-org">Kheops</div>
+          <p>Built a workflow engine that took over task assignment, leave approval, and deadline reminders for a 10-person startup, replacing what had been a fully manual admin process.</p>
+          <p>Rebuilt the company's internal LLM task-management system, AUTOPHP, around a <span class="stat-inline">creation → execution → evaluation</span> state machine, making it easier to extend and maintain.</p>
+          <p>Swapped proprietary models for open-source LLMs via the Hugging Face API, and used SpaCy NER to flag urgent tasks and trigger automated 3-day deadline reminders.</p>
+        </div>
+      </div>
+
+      <div class="role reveal">
+        <div class="role-dates">Jan 2024 — Mar 2024</div>
+        <div>
+          <div class="role-title">ML Engineer</div>
+          <div class="role-org">Volta Medical — Video Anonymisation</div>
+          <p>Built an end-to-end anonymisation pipeline for cardiac surgery monitoring footage, cutting manual redaction time from <span class="stat-inline">6–7 hrs</span> to <span class="stat-inline">2 hrs</span> per 3-hour video.</p>
+          <p>Combined YOLO (trained on 10,000 custom augmented frames) with EAST text detection, then filtered patient names with Tesseract OCR and SpaCy NER, reaching <span class="stat-inline">0.90 recall</span> after the NER pass.</p>
+          <p>Added scene detection to avoid processing every frame, and packaged the tool as a standalone executable so hospital staff could run it without any Python setup.</p>
+        </div>
+      </div>
+
+      <div class="role reveal">
+        <div class="role-dates">Oct 2023 — Dec 2023</div>
+        <div>
+          <div class="role-title">ML Engineer</div>
+          <div class="role-org">MANE Fragrances — Legal &amp; IP Chatbot</div>
+          <p>Built a semantic search chatbot so MANE's Legal &amp; IP team could query internal documentation directly, instead of searching manually or interrupting supervisors.</p>
+          <p>Fine-tuned Sentence-BERT on a manually augmented dataset for the retrieval layer, with a Vicuna LLM as fallback on low-confidence queries, delivered through a Streamlit interface built for non-technical staff.</p>
+        </div>
+      </div>
+
+      <div class="role reveal">
+        <div class="role-dates">Jul 2023 — Sep 2023</div>
+        <div>
+          <div class="role-title">Data Analyst Intern</div>
+          <div class="role-org">VPatrol</div>
+          <p>Wrote intelligence reports translating fast-moving, high-stakes events into clear, decision-ready insight for clients, working on a classified government-linked assignment I'm not able to detail publicly.</p>
+          <p>Built web-scraping pipelines to run sentiment analysis across national and international sources, tracking how coverage and public opinion diverged across different political perspectives in near real time.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <h2 class="footer-headline reveal">Let's talk about your data.</h2>
+      <div class="footer-actions reveal">
+        <a class="btn btn-primary" href="mailto:ttha0043@student.monash.edu">Email me</a>
+        <a class="btn btn-ghost" href="Tanisha_Thapa_Resume.pdf" download>Download résumé (PDF)</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/tanisha-thapa-26b1b5231/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/dead-phoenix" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-bottom">
+        <span>Melbourne, AU · +61 466 256 424</span>
+        <span>Built by Tanisha, with a little help from Claude · <a href="#top">Back to top ↑</a></span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

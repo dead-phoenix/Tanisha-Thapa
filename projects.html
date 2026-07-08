@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Tanisha Thapa</title>
+<meta name="description" content="Independent projects by Tanisha Thapa, including the F1 Global Fandom Growth dashboard and the Behavioural Stress Index.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">TANISHA THAPA</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-header">
+    <div class="wrap">
+      <p class="section-tag reveal">Selected Projects</p>
+      <h1 class="reveal">Case studies</h1>
+      <p class="reveal">Independent projects, end to end — pipeline, model, and the visual layer that makes the finding legible.</p>
+    </div>
+  </div>
+
+  <section style="border-top:none;">
+    <div class="wrap">
+
+      <div class="project reveal">
+        <div>
+          <p class="project-year">2026</p>
+          <h3 class="project-title">F1 Global Fandom Growth</h3>
+          <p class="project-kind">Interactive data visualisation — D3.js, Google Trends, FastF1 API</p>
+          <p>Stitched together Google Trends, the FastF1 API, and 154+ manually compiled country-year event records into one comparable time series — solving Trends' window-normalisation problem with an overlapping-window scaling technique so separately-pulled windows line up instead of jumping at the seams.</p>
+          <p>Used OLS regression, paired t-tests, and correlation analysis to separate event-driven growth from on-track performance, isolating <em>Drive to Survive's</em> effect on fan interest across 14 countries.</p>
+          <p>Took the exploratory findings from Tableau and rebuilt them as a narrative-driven D3.js visualisation, designed through the Five Design Sheet method for a public, non-technical audience.</p>
+          <a class="project-link" href="https://dead-phoenix.github.io/F1-Fandom-Growth/" target="_blank" rel="noopener">View live dashboard ↗</a>
+        </div>
+        <div class="stat-block">
+          <div class="stat"><span class="num">+42%</span><span class="label">fan interest after Drive to Survive's release</span></div>
+          <div class="stat"><span class="num">t=−3.29, p=0.006</span><span class="label">paired t-test on pre/post engagement</span></div>
+          <div class="stat"><span class="num">154+</span><span class="label">country-year records compiled</span></div>
+        </div>
+      </div>
+
+      <div class="project reveal">
+        <div>
+          <p class="project-year">2025</p>
+          <h3 class="project-title">Behavioural Stress Index (BSI)</h3>
+          <p class="project-kind">Economic forecasting — PCA, Ridge Regression, walk-forward validation</p>
+          <p>Built an interpretable stress index from Australian Google Trends and ABS macroeconomic data, using PCA and Ridge Regression to identify which search behaviours — Centrelink, mortgage stress, food banks — actually track unemployment.</p>
+          <p>Wrapped the index in a walk-forward classifier that flags forward unemployment spikes ahead of the official statistics, evaluated strictly out-of-sample to avoid look-ahead bias.</p>
+        </div>
+        <div class="stat-block">
+          <div class="stat"><span class="num">0.71</span><span class="label">ROC AUC, walk-forward validated</span></div>
+          <div class="stat"><span class="num">8 months</span><span class="label">median lead time ahead of official indicators</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="section-tag">Notes</p>
+          <h2 class="section-title">Write-ups in progress</h2>
+        </div>
+        <p class="section-note">Short methodology notes expanding on the projects above. New ones added as they're written.</p>
+      </div>
+
+      <div class="notes-grid reveal">
+        <div class="note-card">
+          <p class="note-num">01</p>
+          <h3 class="note-title">Why Google Trends windows don't stitch themselves</h3>
+          <p>The overlapping-window scaling technique behind the F1 fandom project — and why naively concatenating Trends pulls produces a time series that lies to you.</p>
+          <p class="note-status">Drafting</p>
+        </div>
+        <div class="note-card">
+          <p class="note-num">02</p>
+          <h3 class="note-title">Detecting economic stress before the statistics do</h3>
+          <p>How the Behavioural Stress Index turns noisy search behaviour into an early, interpretable warning signal — and where it still gets fooled.</p>
+          <p class="note-status">Drafting</p>
+        </div>
+        <div class="note-card">
+          <p class="note-num">03</p>
+          <h3 class="note-title">Anonymising video at clinical scale</h3>
+          <p>Notes on the YOLO + EAST + NER pipeline built at Volta Medical, and the tradeoffs between recall and processing time in a hospital setting.</p>
+          <p class="note-status">Drafting</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <h2 class="footer-headline reveal">Let's talk about your data.</h2>
+      <div class="footer-actions reveal">
+        <a class="btn btn-primary" href="mailto:ttha0043@student.monash.edu">Email me</a>
+        <a class="btn btn-ghost" href="Tanisha_Thapa_Resume.pdf" download>Download résumé (PDF)</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/tanisha-thapa-26b1b5231/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/dead-phoenix" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-bottom">
+        <span>Melbourne, AU · +61 466 256 424</span>
+        <span>Built by Tanisha, with a little help from Claude · <a href="#top">Back to top ↑</a></span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
