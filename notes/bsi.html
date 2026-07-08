@@ -15,260 +15,280 @@
 
 <body>
 
-<header class="nav">
-    <div class="nav-inner">
-        <a href="../index.html" class="nav-name">TANISHA THAPA</a>
+    <header class="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-name">TANISHA THAPA</a>
+
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../work.html">Work</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+                <li><a href="../education.html">Education</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="article-page">
+
+            <div class="wrap">
+
+                <a class="back-link" href="../notes.html">
+                    ← Back to Notes
+                </a>
+
+                <p class="section-tag">
+                    Behavioural Economics · Forecasting
+                </p>
+
+                <h1 class="article-title">
+                    Detecting economic stress before the statistics do
+                </h1>
+
+                <p class="article-subtitle">
+                    How the Behavioural Stress Index turns noisy search behaviour into an early warning signal—and why
+                    validating it properly mattered more than chasing higher accuracy.
+                </p>
+
+                <div class="article-meta">
+                    July 2026 · 8 min read
+                </div>
 
-        <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../work.html">Work</a></li>
-            <li><a href="../projects.html">Projects</a></li>
-            <li><a href="../notes.html" class="active">Notes</a></li>
-            <li><a href="../education.html">Education</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-    </div>
-</header>
+                <div class="article-summary">
 
-<main>
+                    <h3>At a glance</h3>
 
-<section class="article-page">
+                    <ul>
+                        <li>Why behavioural search data can precede official economic indicators</li>
+                        <li>Building a Behavioural Stress Index from Google Trends</li>
+                        <li>The danger of look-ahead bias</li>
+                        <li>Why walk-forward validation changed the conclusions</li>
+                    </ul>
 
-<div class="wrap">
+                </div>
 
-<a class="back-link" href="../notes.html">
-← Back to Notes
-</a>
+                <article class="article-content">
 
-<p class="section-tag">
-Behavioural Economics · Forecasting
-</p>
+                    <h2>Economic indicators are slow</h2>
 
-<h1 class="article-title">
-Detecting economic stress before the statistics do
-</h1>
+                    <p>
+                        By the time unemployment statistics are released, households have often been feeling financial
+                        pressure for months. People don't suddenly become worried the day unemployment rises—they start
+                        searching for terms like <em>Centrelink</em>, <em>mortgage stress</em>, <em>food banks</em>, or
+                        <em>financial hardship</em> long before those changes appear in official statistics.
+                    </p>
 
-<p class="article-subtitle">
-How the Behavioural Stress Index turns noisy search behaviour into an early warning signal—and why validating it properly mattered more than chasing higher accuracy.
-</p>
+                    <p>
+                        That observation became the starting point for this project.
+                    </p>
 
-<div class="article-meta">
-July 2026 · 8 min read
-</div>
+                    <p>
+                        Rather than replacing traditional economic indicators, the goal was to investigate whether
+                        behavioural search data could provide an earlier signal of economic stress.
+                    </p>
 
-<div class="article-summary">
+                    <h2>Why Google Trends?</h2>
 
-<h3>At a glance</h3>
+                    <p>
+                        Google Trends is noisy. Search volumes fluctuate because of media attention, news cycles,
+                        seasonal effects, and random public interest. Looking at a single keyword rarely tells you much.
+                    </p>
 
-<ul>
-<li>Why behavioural search data can precede official economic indicators</li>
-<li>Building a Behavioural Stress Index from Google Trends</li>
-<li>The danger of look-ahead bias</li>
-<li>Why walk-forward validation changed the conclusions</li>
-</ul>
+                    <p>
+                        Instead, I combined dozens of financial stress related search terms into a single Behavioural
+                        Stress Index (BSI), merging monthly Australian Google Trends data with macroeconomic indicators
+                        from the Australian Bureau of Statistics and the Reserve Bank of Australia.
+                    </p>
 
-</div>
+                    <p>
+                        Several approaches were evaluated for constructing the index:
+                    </p>
 
-<article class="article-content">
+                    <ul>
+                        <li>Principal Component Analysis (PCA)</li>
+                        <li>Correlation-weighted indices</li>
+                        <li>Ridge Regression</li>
+                        <li>Walk-forward forecasting models</li>
+                    </ul>
 
-<h2>Economic indicators are slow</h2>
+                    <p>
+                        The underlying idea was simple: if multiple financial stress searches begin increasing together,
+                        they may reveal economic pressure before traditional indicators fully respond.
+                    </p>
 
-<p>
-By the time unemployment statistics are released, households have often been feeling financial pressure for months. People don't suddenly become worried the day unemployment rises—they start searching for terms like <em>Centrelink</em>, <em>mortgage stress</em>, <em>food banks</em>, or <em>financial hardship</em> long before those changes appear in official statistics.
-</p>
+                    <h2>The first version looked amazing—and that was the problem</h2>
 
-<p>
-That observation became the starting point for this project.
-</p>
+                    <p>
+                        Initially I normalised the entire dataset before constructing the index. PCA was also fitted
+                        using the complete dataset.
+                    </p>
 
-<p>
-Rather than replacing traditional economic indicators, the goal was to investigate whether behavioural search data could provide an earlier signal of economic stress.
-</p>
+                    <p>
+                        Although subtle, this introduces look-ahead bias. Future observations influence earlier
+                        transformations, making historical performance appear far better than would ever be possible in
+                        practice.
+                    </p>
 
-<h2>Why Google Trends?</h2>
+                    <p>
+                        The correlations looked excellent.
+                        Unfortunately, they weren't realistic.
+                    </p>
 
-<p>
-Google Trends is noisy. Search volumes fluctuate because of media attention, news cycles, seasonal effects, and random public interest. Looking at a single keyword rarely tells you much.
-</p>
+                    <h2>Rebuilding everything without data leakage</h2>
 
-<p>
-Instead, I combined dozens of financial stress related search terms into a single Behavioural Stress Index (BSI), merging monthly Australian Google Trends data with macroeconomic indicators from the Australian Bureau of Statistics and the Reserve Bank of Australia.
-</p>
+                    <p>
+                        I rebuilt the entire pipeline using a strict walk-forward framework.
+                    </p>
 
-<p>
-Several approaches were evaluated for constructing the index:
-</p>
+                    <p>
+                        For every monthly prediction:
+                    </p>
 
-<ul>
-<li>Principal Component Analysis (PCA)</li>
-<li>Correlation-weighted indices</li>
-<li>Ridge Regression</li>
-<li>Walk-forward forecasting models</li>
-</ul>
+                    <ul>
 
-<p>
-The underlying idea was simple: if multiple financial stress searches begin increasing together, they may reveal economic pressure before traditional indicators fully respond.
-</p>
+                        <li>only historical observations were available</li>
 
-<h2>The first version looked amazing—and that was the problem</h2>
+                        <li>feature scaling was fitted only on past data</li>
 
-<p>
-Initially I normalised the entire dataset before constructing the index. PCA was also fitted using the complete dataset.
-</p>
+                        <li>PCA was re-estimated using only historical observations</li>
 
-<p>
-Although subtle, this introduces look-ahead bias. Future observations influence earlier transformations, making historical performance appear far better than would ever be possible in practice.
-</p>
+                        <li>model coefficients were retrained each step</li>
 
-<p>
-The correlations looked excellent.
-Unfortunately, they weren't realistic.
-</p>
+                        <li>future unemployment remained completely hidden</li>
 
-<h2>Rebuilding everything without data leakage</h2>
+                    </ul>
 
-<p>
-I rebuilt the entire pipeline using a strict walk-forward framework.
-</p>
+                    <p>
+                        Performance dropped compared to the original implementation—which is exactly what should happen
+                        when leakage is removed.
+                    </p>
 
-<p>
-For every monthly prediction:
-</p>
+                    <p>
+                        That became one of the biggest lessons from the project: good validation is often more valuable
+                        than impressive metrics.
+                    </p>
 
-<ul>
+                    <h2>What actually worked?</h2>
 
-<li>only historical observations were available</li>
+                    <h3>Principal Component Analysis</h3>
 
-<li>feature scaling was fitted only on past data</li>
+                    <p>
+                        PCA produced a clean and interpretable behavioural index, successfully capturing major stress
+                        events such as COVID. However, it struggled as a standalone forecasting model.
+                    </p>
 
-<li>PCA was re-estimated using only historical observations</li>
+                    <h3>Correlation-weighted index</h3>
 
-<li>model coefficients were retrained each step</li>
+                    <p>
+                        Static correlation weights proved unstable because relationships between search behaviour and
+                        unemployment changed across different economic periods.
+                    </p>
 
-<li>future unemployment remained completely hidden</li>
+                    <h3>Ridge Regression</h3>
 
-</ul>
+                    <p>
+                        Ridge Regression consistently performed best among the behavioural-only approaches.
+                        Regularisation reduced overfitting while allowing multiple search behaviours to contribute
+                        simultaneously.
+                    </p>
 
-<p>
-Performance dropped compared to the original implementation—which is exactly what should happen when leakage is removed.
-</p>
+                    <p>
+                        Searches surrounding Centrelink, financial hardship, food banks, buy now pay later, and mortgage
+                        stress emerged as some of the strongest behavioural predictors.
+                    </p>
 
-<p>
-That became one of the biggest lessons from the project: good validation is often more valuable than impressive metrics.
-</p>
+                    <h2>The persistence surprise</h2>
 
-<h2>What actually worked?</h2>
+                    <p>
+                        One result surprised me.
+                    </p>
 
-<h3>Principal Component Analysis</h3>
+                    <p>
+                        A very simple persistence baseline—predicting next month's unemployment using this month's
+                        value—was extremely difficult to beat because unemployment changes gradually over time.
+                    </p>
 
-<p>
-PCA produced a clean and interpretable behavioural index, successfully capturing major stress events such as COVID. However, it struggled as a standalone forecasting model.
-</p>
+                    <p>
+                        That shifted the focus of the project from predicting unemployment levels toward detecting
+                        changes and turning points.
+                    </p>
 
-<h3>Correlation-weighted index</h3>
+                    <h2>Predicting change instead of levels</h2>
 
-<p>
-Static correlation weights proved unstable because relationships between search behaviour and unemployment changed across different economic periods.
-</p>
+                    <p>
+                        Instead of forecasting unemployment directly, the models predicted future changes.
+                    </p>
 
-<h3>Ridge Regression</h3>
+                    <p>
+                        This made behavioural search data much more informative, because search behaviour often changes
+                        before unemployment itself does.
+                    </p>
 
-<p>
-Ridge Regression consistently performed best among the behavioural-only approaches. Regularisation reduced overfitting while allowing multiple search behaviours to contribute simultaneously.
-</p>
+                    <p>
+                        Using this framework, the behavioural classifier achieved an out-of-sample ROC AUC of
+                        approximately <strong>0.73</strong> for identifying future stress events.
+                    </p>
 
-<p>
-Searches surrounding Centrelink, financial hardship, food banks, buy now pay later, and mortgage stress emerged as some of the strongest behavioural predictors.
-</p>
+                    <p>
+                        While not perfect, it demonstrated that behavioural search behaviour contains genuine predictive
+                        information beyond random chance.
+                    </p>
 
-<h2>The persistence surprise</h2>
+                    <h2>What I learned</h2>
 
-<p>
-One result surprised me.
-</p>
+                    <p>
+                        This project became much more than building a forecasting model.
+                    </p>
 
-<p>
-A very simple persistence baseline—predicting next month's unemployment using this month's value—was extremely difficult to beat because unemployment changes gradually over time.
-</p>
+                    <p>
+                        It became an exercise in building one correctly.
+                    </p>
 
-<p>
-That shifted the focus of the project from predicting unemployment levels toward detecting changes and turning points.
-</p>
+                    <ul>
 
-<h2>Predicting change instead of levels</h2>
+                        <li>Avoid data leakage.</li>
 
-<p>
-Instead of forecasting unemployment directly, the models predicted future changes.
-</p>
+                        <li>Validate models exactly as they would be used in practice.</li>
 
-<p>
-This made behavioural search data much more informative, because search behaviour often changes before unemployment itself does.
-</p>
+                        <li>Always compare against strong baselines.</li>
 
-<p>
-Using this framework, the behavioural classifier achieved an out-of-sample ROC AUC of approximately <strong>0.73</strong> for identifying future stress events.
-</p>
+                        <li>Choose metrics that answer the right question.</li>
 
-<p>
-While not perfect, it demonstrated that behavioural search behaviour contains genuine predictive information beyond random chance.
-</p>
+                    </ul>
 
-<h2>What I learned</h2>
+                    <p>
+                        Behavioural data is unlikely to replace official economic statistics.
+                        Its value lies in providing an earlier warning signal.
+                        People search before economies move.
+                        Those searches are noisy—but when combined carefully and evaluated honestly, they provide a
+                        surprisingly informative picture of emerging economic stress.
+                    </p>
 
-<p>
-This project became much more than building a forecasting model.
-</p>
+                </article>
 
-<p>
-It became an exercise in building one correctly.
-</p>
+            </div>
 
-<ul>
+        </section>
 
-<li>Avoid data leakage.</li>
+        <footer id="contact">
 
-<li>Validate models exactly as they would be used in practice.</li>
+            <div class="wrap">
 
-<li>Always compare against strong baselines.</li>
+                <div class="footer-bottom">
+                    <span>Melbourne, AU · +61 466 256 424</span>
+                    <span>Built by Tanisha · <a href="#top">Back to top ↑</a></span>
+                </div>
 
-<li>Choose metrics that answer the right question.</li>
+            </div>
 
-</ul>
+        </footer>
 
-<p>
-Behavioural data is unlikely to replace official economic statistics.
-Its value lies in providing an earlier warning signal.
-People search before economies move.
-Those searches are noisy—but when combined carefully and evaluated honestly, they provide a surprisingly informative picture of emerging economic stress.
-</p>
+    </main>
 
-</article>
-
-</div>
-
-</section>
-
-<footer id="contact">
-
-<div class="wrap">
-
-<div class="footer-bottom">
-
-<span>Melbourne, AU</span>
-
-<span>
-<a href="../notes.html">← Back to Notes</a>
-</span>
-
-</div>
-
-</div>
-
-</footer>
-
-</main>
-
-<script src="../script.js"></script>
+    <script src="../script.js"></script>
 
 </body>
 

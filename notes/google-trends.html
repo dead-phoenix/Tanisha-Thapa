@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Why Google Trends Windows Don't Stitch Themselves — Tanisha Thapa</title>
+
+    <meta name="description"
+        content="How I stitched together overlapping Google Trends windows to build a continuous time series for analysing Formula 1 fandom growth.">
+
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+
+<header class="nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-name">TANISHA THAPA</a>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../work.html">Work</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../notes.html" class="active">Notes</a></li>
+            <li><a href="../education.html">Education</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+
+<section class="article-page">
+
+<div class="wrap">
+
+<a class="back-link" href="../notes.html">
+← Back to Notes
+</a>
+
+<p class="section-tag">
+Data Engineering · Time Series
+</p>
+
+<h1 class="article-title">
+Why Google Trends windows don't stitch themselves
+</h1>
+
+<p class="article-subtitle">
+The overlapping-window scaling technique behind my Formula 1 fandom project—and why naively concatenating Google Trends downloads creates a time series that tells the wrong story.
+</p>
+
+<div class="article-meta">
+July 2026 · 7 min read
+</div>
+
+<div class="article-summary">
+
+<h3>At a glance</h3>
+
+<ul>
+<li>Why Google Trends normalises every query independently</li>
+<li>Why simply joining multiple downloads creates artificial jumps</li>
+<li>The overlapping-window scaling technique I used</li>
+<li>How this produced a continuous ten-year time series across 14 countries</li>
+</ul>
+
+</div>
+
+<article class="article-content">
+
+<h2>When Google Trends stopped being simple</h2>
+
+<p>
+When I started analysing the growth of Formula 1's global fanbase, Google Trends looked like the perfect data source. It provides weekly search interest going back to 2004, covers almost every country, and is easy to query programmatically using <code>pytrends</code>.
+</p>
+
+<p>
+Then I tried downloading ten years of data.
+</p>
+
+<p>
+That's where the problem started.
+</p>
+
+<h2>The hidden problem with Google Trends</h2>
+
+<p>
+Google Trends doesn't return absolute search volumes.
+</p>
+
+<p>
+Instead, every query is normalised independently. The week with the highest search interest inside each download is assigned a value of <strong>100</strong>, and every other observation is scaled relative to that peak.
+</p>
+
+<p>
+Imagine downloading two overlapping windows:
+</p>
+
+<ul>
+<li>2015–2019 → peak = 100</li>
+<li>2018–2022 → peak = 100</li>
+</ul>
+
+<p>
+Although both datasets contain the years 2018 and 2019, they are no longer on the same scale.
+</p>
+
+<p>
+If Formula 1 became significantly more popular between 2019 and 2022, the second download rescales everything upward. The same week can therefore receive different values depending on which query produced it.
+</p>
+
+<p>
+Simply joining these datasets creates discontinuities that never existed in reality.
+</p>
+
+<p>
+Instead of measuring changes in Formula 1 popularity, you're mostly measuring how Google decided to normalise each request.
+</p>
+
+<h2>The naïve approach</h2>
+
+<p>
+Many examples online split long time periods into multiple downloads such as:
+</p>
+
+<ul>
+<li>2015–2019</li>
+<li>2020–2025</li>
+</ul>
+
+<p>
+before concatenating the results into a single series.
+</p>
+
+<p>
+The problem becomes obvious as soon as the data is plotted.
+</p>
+
+<p>
+The time series suddenly jumps at exactly the point where one download ends and the next begins.
+</p>
+
+<p>
+Those jumps aren't real events.
+They're scaling artefacts introduced during data collection.
+</p>
+
+<h2>The solution: overlapping windows</h2>
+
+<p>
+Instead of treating every Google Trends download independently, I collected overlapping windows.
+</p>
+
+<ul>
+<li>2015–2019</li>
+<li>2018–2022</li>
+<li>2021–2025</li>
+</ul>
+
+<p>
+Each download shares roughly eighteen months of observations with the previous one.
+</p>
+
+<p>
+Because both windows observe the same weeks, those overlapping periods can be used to estimate how much one download has been rescaled relative to the other.
+</p>
+
+<p>
+For each overlap, I calculated the average ratio between matching observations to obtain a scaling factor.
+</p>
+
+<p>
+Every value in the newer window was then multiplied by this factor before being stitched onto the existing series.
+</p>
+
+<p>
+Rather than resetting every download back to 100, each successive window inherits the scale established by the first query, producing one continuous time series.
+</p>
+
+<h2>Why this mattered</h2>
+
+<p>
+Without correcting Google's independent normalisation, many of the conclusions in my project would have been unreliable.
+</p>
+
+<p>
+After stitching the windows together, I could consistently compare:
+</p>
+
+<ul>
+<li>14 countries</li>
+<li>Ten years of weekly observations</li>
+<li>Major media events such as <em>Drive to Survive</em></li>
+<li>Championship seasons</li>
+<li>Driver transfers</li>
+</ul>
+
+<p>
+This ultimately revealed several patterns that would have been difficult to trust using raw Google Trends downloads alone.
+</p>
+
+<ul>
+<li>Global interest accelerated sharply following the release of <em>Drive to Survive</em>.</li>
+
+<li>Mexico experienced its largest growth immediately after Sergio Pérez joined Red Bull.</li>
+
+<li>The Netherlands peaked during Verstappen's early championships before declining despite continued success.</li>
+
+<li>Traditional Formula 1 markets and emerging markets followed noticeably different growth trajectories.</li>
+</ul>
+
+<p>
+Those findings depend on one critical assumption:
+that search interest is being measured consistently across time.
+</p>
+
+<h2>What I learned</h2>
+
+<p>
+This project reminded me that data collection is often harder than data analysis.
+</p>
+
+<p>
+A sophisticated dashboard or statistical model can't compensate for inconsistencies introduced before the analysis even begins.
+</p>
+
+<p>
+Most real-world datasets don't arrive analysis-ready.
+</p>
+
+<p>
+Understanding how a dataset is generated—and where its assumptions break down—is often more valuable than applying another machine learning model.
+</p>
+
+<p>
+In this project, solving a seemingly simple preprocessing problem turned out to be one of the most important engineering decisions in the entire analysis.
+</p>
+
+</article>
+
+</div>
+
+</section>
+
+<footer id="contact">
+
+            <div class="wrap">
+
+                <div class="footer-bottom">
+                    <span>Melbourne, AU · +61 466 256 424</span>
+                    <span>Built by Tanisha · <a href="#top">Back to top ↑</a></span>
+                </div>
+
+            </div>
+
+        </footer>
+
+</main>
+
+<script src="../script.js"></script>
+
+</body>
+
+</html>

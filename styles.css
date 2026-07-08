@@ -186,7 +186,7 @@ transition:
 }
 .note-card:hover {background: var(--card); transform: translateY(-3px);}
 .note-card:focus-visible {outline: 2px solid var(--signal); outline-offset: -2px;}
-.note-num{font-family:var(--font-mono); font-size:12px; color:var(--signal-soft); margin-bottom:16px;}
+.note-num{font-family:var(--font-mono); font-size:12px; color:var(--signal-soft); margin-bottom:14px;}
 .note-topic{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em;
   text-transform:uppercase; color:var(--signal-soft); margin-bottom:14px;
 }
