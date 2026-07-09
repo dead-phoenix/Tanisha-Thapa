@@ -9,3 +9,28 @@ if ('IntersectionObserver' in window){
 } else {
   revealEls.forEach(el=>el.classList.add('in'));
 }
+
+// Carousels (used on the Off The Clock page)
+document.querySelectorAll('.carousel').forEach(carousel => {
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  const counter = carousel.querySelector('.carousel-counter');
+  const prevBtn = carousel.querySelector('.carousel-prev');
+  const nextBtn = carousel.querySelector('.carousel-next');
+  let index = 0;
+
+  function render(){
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+    if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    index = (index - 1 + slides.length) % slides.length;
+    render();
+  });
+  nextBtn?.addEventListener('click', () => {
+    index = (index + 1) % slides.length;
+    render();
+  });
+
+  render();
+});
