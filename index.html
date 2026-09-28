@@ -6,10 +6,11 @@
 <title>Tanisha Thapa — Data Scientist / ML Engineer</title>
 <meta name="description" content="Portfolio and résumé of Tanisha Thapa, data scientist and ML engineer working across time series, NLP, and computer vision.">
 <link rel="stylesheet" href="styles.css">
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
 </head>
 <body>
 
-<header class="nav">
+<header class="nav on-hero">
   <div class="nav-inner">
     <a href="index.html" class="nav-name">TANISHA THAPA</a>
     <ul class="nav-links">
@@ -26,7 +27,10 @@
 
 <main id="top">
 
-  <section class="hero" style="border-top:none; padding-bottom:96px;">
+  <section class="hero hero-ocean">
+    <div class="hero-gradient" aria-hidden="true">
+      <canvas id="hero-gradient-canvas"></canvas>
+    </div>
     <div class="wrap">
       <p class="eyebrow">Data Scientist · ML Engineer</p>
       <h1 class="headline">Finding the <em>signal</em> in the noise.</h1>
@@ -65,29 +69,38 @@
 </div>
 
       <div class="teaser-grid reveal">
+        <div class="teaser-hover" aria-hidden="true"></div>
         <a class="teaser-card" href="work.html">
-          <p class="teaser-num">01</p>
-          <h3 class="teaser-title">Work</h3>
-          <p>Four internships spanning workflow automation, medical video anonymisation, legal-document search, and classified intelligence analysis.</p>
-          <span class="teaser-link">View experience →</span>
+          <div class="teaser-surface">
+            <p class="teaser-num">01</p>
+            <h3 class="teaser-title">Work</h3>
+            <p>Four internships spanning workflow automation, medical video anonymisation, legal-document search, and classified intelligence analysis.</p>
+            <span class="teaser-link">View experience →</span>
+          </div>
         </a>
         <a class="teaser-card" href="projects.html">
-          <p class="teaser-num">02</p>
-          <h3 class="teaser-title">Projects</h3>
-          <p>Independent research: an interactive D3.js dashboard on global F1 fandom, and a Behavioural Stress Index that forecasts unemployment 8 months out.</p>
-          <span class="teaser-link">View projects →</span>
+          <div class="teaser-surface">
+            <p class="teaser-num">02</p>
+            <h3 class="teaser-title">Projects</h3>
+            <p>Independent research: an interactive D3.js dashboard on global F1 fandom, and a Behavioural Stress Index that forecasts unemployment 8 months out.</p>
+            <span class="teaser-link">View projects →</span>
+          </div>
         </a>
-                <a class="teaser-card" href="notes.html">
-          <p class="teaser-num">03</p>
-          <h3 class="teaser-title">Notes</h3>
-          <p>Thoughts on data engineering, machine learning, visualisation, and the lessons that came from building real projects—not just the final results.</p>
-          <span class="teaser-link">View notes →</span>
+        <a class="teaser-card" href="notes.html">
+          <div class="teaser-surface">
+            <p class="teaser-num">03</p>
+            <h3 class="teaser-title">Notes</h3>
+            <p>Thoughts on data engineering, machine learning, visualisation, and the lessons that came from building real projects—not just the final results.</p>
+            <span class="teaser-link">View notes →</span>
+          </div>
         </a>
         <a class="teaser-card" href="education.html">
-          <p class="teaser-num">04</p>
-          <h3 class="teaser-title">Education</h3>
-          <p>Monash, Centrale Méditerranée, and Mahindra University — plus the full stack of languages, frameworks, and methods behind the work.</p>
-          <span class="teaser-link">View education →</span>
+          <div class="teaser-surface">
+            <p class="teaser-num">04</p>
+            <h3 class="teaser-title">Education</h3>
+            <p>Monash, Centrale Méditerranée, and Mahindra University — plus the full stack of languages, frameworks, and methods behind the work.</p>
+            <span class="teaser-link">View education →</span>
+          </div>
         </a>
       </div>
     </div>

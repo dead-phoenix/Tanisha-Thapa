@@ -6,6 +6,7 @@
 <title>Projects — Tanisha Thapa</title>
 <meta name="description" content="Independent projects by Tanisha Thapa, including the F1 Global Fandom Growth dashboard and the Behavioural Stress Index.">
 <link rel="stylesheet" href="styles.css">
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
 </head>
 <body>
 
@@ -36,6 +37,22 @@
 
   <section style="border-top:none;">
     <div class="wrap">
+
+      <div class="project reveal">
+        <div>
+          <p class="project-year">2026</p>
+          <h3 class="project-title">Loan Sanction Amount Prediction</h3>
+          <p class="project-kind">Predictive modelling — Python, scikit-learn, HistGradientBoosting, Kaggle</p>
+          <p>Investigated 19,322 uncleaned loan applications from several internal systems to predict the amount a lender would sanction. Found the target is zero-inflated (26.8% of applications sit at exactly $0) and that approval is governed by a hard credit-rating cliff at 650, so I framed the problem as two lender decisions, approve or decline, then how much, instead of one regression.</p>
+          <p>Diagnosed and repaired the data before modelling: recovered 1,538 missing incomes from a mislabelled duplicate column, recoded −999 sentinels, and showed missingness was informative rather than random. Built a soft-hurdle model (HistGradientBoosting approval classifier × Random Forest haircut regressor), chosen over linear and bagged-tree alternatives using stratified out-of-fold cross-validation with all preprocessing fitted inside each fold to prevent leakage.</p>
+          <p>Validated on cross-validation rather than the noisy public leaderboard, explained feature influence with out-of-fold permutation importance, and critiqued the model's main weakness: declined applications it still predicts as approved. Built with a teammate for a Monash FIT5149 Kaggle competition.</p>
+        </div>
+        <div class="stat-block">
+          <div class="stat"><span class="num">~50%</span><span class="label">error cut by two-stage hurdle vs single-stage model</span></div>
+          <div class="stat"><span class="num">0.4% vs 82.8%</span><span class="label">approval rate below vs above the 650 credit cliff</span></div>
+          <div class="stat"><span class="num">19,322</span><span class="label">loan applications analysed</span></div>
+        </div>
+      </div>
 
       <div class="project reveal">
         <div>
