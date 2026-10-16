@@ -46,6 +46,7 @@
     <p>Households in regional Victoria usually find help only after a crisis hits. ShieldAhead is a preparedness PWA that helps people in the Loddon Campaspe corridor locate free Wi-Fi, support services and relief resources before an emergency, rather than acting as another service directory. Built over 12 weeks in a team of six for a Monash FIT5120 industry project; I owned much of the backend and data pipeline, then the frontend in Iterations 2 and 3.</p>
     <p>The data came from public sources (ACNC, VicFreeWiFi, Vicmap) with no scraping, so I built a scheduled refresh in GitHub Actions and a normalised Postgres schema. I traced a quality problem to its root: about 89% of charity records only ever received a generic label because the inference logic read free-text values while the inclusion flags checked column names, and only two live Register columns could ever fire a match. I redesigned the refresh as a postcode-scoped upsert with a 24-hour TTL and stale-while-revalidate, and replaced paid scheduling with an externally triggered refresh endpoint.</p>
     <p>I also split a ~1,500-line monolithic API into Blueprint modules, added rate limiting and geographic validation, and proxied routing through OpenRouteService. Household data is encrypted on the device and never sent to the server, and the product deliberately uses no AI, so every piece of advice is traceable to an official source. On the frontend I built the map views and the offline-first experience so key content still works when connectivity drops.</p>
+    <a class="project-link" href="https://shieldahead.onrender.com/" target="_blank" rel="noopener">View Application ↗</a>
   </div>
   <div class="stat-block">
     <div class="stat"><span class="num">~89%</span><span class="label">charity records found carrying only a generic label, traced to a schema mismatch</span></div>
@@ -54,21 +55,6 @@
   </div>
 </div>
 
-      <div class="project reveal">
-  <div>
-    <p class="project-year">2026</p>
-    <h3 class="project-title">AI Research Discovery Engine</h3>
-    <p class="project-kind">AI/ML System — FastAPI, Streamlit, ChromaDB, PostgreSQL, SentenceTransformers, Gemini</p>
-    <p>A semantic search and retrieval platform that lets researchers query a corpus of academic papers by meaning rather than keyword, then surfaces similar work through a custom paper-similarity model and answers questions over retrieved papers with cited, hallucination-gated RAG.</p>
-    <p>Built on a FastAPI backend with a ChromaDB vector store and BGE embeddings for semantic ranking, PostgreSQL for relational metadata, and a reused title/abstract similarity model for recommendations; the RAG layer applies a relevance-threshold gate so the LLM only answers from retrieved sources it's actually confident in.</p>
-    <p>Seeded with ~2,400 papers across computational linguistics and breast cancer detection research, containerised with Docker Compose, and shipped through staged milestones (M0–M4) with a Streamlit MVP frontend for end-to-end demoing.</p>
-  </div>
-  <div class="stat-block">
-    <div class="stat"><span class="num">2.4k+</span><span class="label">papers indexed</span></div>
-    <div class="stat"><span class="num">2</span><span class="label">research domains</span></div>
-    <div class="stat"><span class="num">5</span><span class="label">milestones shipped</span></div>
-  </div>
-</div>
 
       <div class="project reveal">
         <div>
@@ -85,6 +71,23 @@
           <div class="stat"><span class="num">19,322</span><span class="label">loan applications analysed</span></div>
         </div>
       </div>
+
+      <div class="project reveal">
+  <div>
+    <p class="project-year">2026</p>
+    <h3 class="project-title">AI Research Discovery Engine</h3>
+    <p class="project-kind">AI/ML System — FastAPI, Streamlit, ChromaDB, PostgreSQL, SentenceTransformers, Gemini</p>
+    <p>A semantic search and retrieval platform that lets researchers query a corpus of academic papers by meaning rather than keyword, then surfaces similar work through a custom paper-similarity model and answers questions over retrieved papers with cited, hallucination-gated RAG.</p>
+    <p>Built on a FastAPI backend with a ChromaDB vector store and BGE embeddings for semantic ranking, PostgreSQL for relational metadata, and a reused title/abstract similarity model for recommendations; the RAG layer applies a relevance-threshold gate so the LLM only answers from retrieved sources it's actually confident in.</p>
+    <p>Seeded with ~2,400 papers across computational linguistics and breast cancer detection research, containerised with Docker Compose, and shipped through staged milestones (M0–M4) with a Streamlit MVP frontend for end-to-end demoing.</p>
+    <a class="project-link" href="https://github.com/dead-phoenix/AI-Research-Discovery-Engine" target="_blank" rel="noopener">View Github Repo ↗</a>
+  </div>
+  <div class="stat-block">
+    <div class="stat"><span class="num">2.4k+</span><span class="label">papers indexed</span></div>
+    <div class="stat"><span class="num">2</span><span class="label">research domains</span></div>
+    <div class="stat"><span class="num">5</span><span class="label">milestones shipped</span></div>
+  </div>
+</div>
 
       <div class="project reveal">
         <div>
